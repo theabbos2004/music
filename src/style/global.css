@@ -1,0 +1,21 @@
+  :root {
+    --color-blue-1:#BDCBD8;
+    --color-green:#1DB954;
+    --color-green-1:rgba(29, 185, 84, 0.39);
+    --color-gray:rgba(87, 87, 87, 1);
+    --color-red:rgb(255, 0, 0);
+
+    --dark-bg-blue:#001529;
+  }
+  
+  html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @media only screen and (max-width:800px){
+    html{
+      font-size: 80%;
+    }
+  }

@@ -1,0 +1,7 @@
+export { default as Home } from "./Home"
+export { default as Liked } from "./Liked"
+export { default as Marked } from "./Marked"
+export { default as Albums } from "./Albums"
+export { default as Profile } from "./Profile"
+export { default as ProfileS } from "./ProfileS"
+export { default as PriviteS } from "./PriviteS"
