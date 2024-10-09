@@ -1,11 +1,10 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import { memo, useEffect, useRef, useState } from 'react';
 import { Row, Spin } from 'antd';
 import { BsBookmark, BsCaretLeft, BsCaretRight, BsHeart, BsPauseCircleFill, BsPlayCircleFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { playPause, setCurrentTime, setMusicDuration } from '../../redux/features/playerSlice';
 
-const Player = ({ activeSong,isPlaying, currentTime, volume, repeat, handlePlayPause,handlePrevSong,handleNextSong }: { activeSong?: any,isActive:boolean, isPlaying?: any, currentTime: any, volume?: any, repeat?: any, handlePlayPause?: any ,handlePrevSong:()=>Promise<boolean>,handleNextSong:()=>Promise<boolean>}) => {
+const Player = ({ activeSong,isPlaying, currentTime, repeat, handlePlayPause,handlePrevSong,handleNextSong }: { activeSong?: any,isActive:boolean, isPlaying?: any, currentTime: any, repeat?: any, handlePlayPause?: any ,handlePrevSong:()=>Promise<boolean>,handleNextSong:()=>Promise<boolean>}) => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isMusicPlay, setIsMusicPlay] = useState<boolean>(false)

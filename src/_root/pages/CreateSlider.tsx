@@ -2,7 +2,6 @@ import { Col} from "antd";
 import { CreateSliderComp} from "../../components";
 import { memo, useEffect, useState} from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useMainContext } from "../../contexts/MainContext";
 import { usegetCurrentUserQuery, useGetUser } from "../../lib/react-query/queris";

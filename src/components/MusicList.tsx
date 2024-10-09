@@ -22,8 +22,6 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
     const { mutateAsync: updateAccount } = useUpdateAccount()
     const { mutateAsync: createSaveMusic } = useCreateSaveMusic()
     const { mutateAsync: saveMusic } = useSaveMusic()
-    // const { mutateAsync: createViewMusic } = useCreateViewMusic()
-    // const { mutateAsync: viewedMusic } = useViewedMusic()
     const [ isMusicLoading,setIsMusicLoading]=useState<boolean>()
     const { openNotification} = useMainContext()
     useEffect(() => {
@@ -154,54 +152,6 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
             setIsMusicLoading(false)
         }
     }
-    const viewMusicFunc=async ()=>{        
-        try{
-            setIsMusicLoading(true)
-            if(!user){
-                throw new Error("please register first")
-            }
-            // let viewId=user?.viewed?.$id
-            // if(!user?.viewed){
-            //     const createViewMusicRes=await createViewMusic({userId:user?.$id})
-            //     if(createViewMusicRes.error){
-            //         throw new Error(createViewMusicRes.error)
-            //     }
-                
-            //     viewId=createViewMusicRes?.data?.$id
-                
-            // }
-            // let newViews=[]
-            // let availableUser=false
-            // if(user?.viewed?.musics?.length===0){
-            //     newViews.push(music)
-            // }
-            // else{
-            //     user?.viewed?.musics?.forEach((view:any)=> {
-            //         if(view?.$id!==music?.$id){
-            //             newViews.push(view)
-            //         }
-            //         else{
-            //             availableUser=true
-            //         }
-            //     })
-            //     !availableUser && newViews.push(music)
-            // }
-            // const viewedMusicRes=await viewedMusic({musics:newViews,viewId})
-            // if(viewedMusicRes.error){
-            //     throw new Error(viewedMusicRes.error)
-            // }
-            // availableUser?
-            // openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
-            // :openNotification({ placement: 'topLeft', description: `it was successful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
-            
-        }
-        catch(error){
-            openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-red)" }} /> })
-        }
-        finally{
-            setIsMusicLoading(false)
-        }
-    }
     
     return (
         <Col className="pb-[5rem] px-6">
@@ -216,7 +166,6 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                         delMusicFunc={delMusicFunc}
                         likeMusicFunc={likeMusicFunc}
                         saveMusicFunc={saveMusicFunc}
-                        viewMusicFunc={viewMusicFunc}
                     />
                     :
                     showMenu === "albums" ?
@@ -242,11 +191,9 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                                 {
                                     albums?.map((album: any, albumIndex: number) => (
                                         <MusicCard key={albumIndex} admin={admin} music={album} musicIndex={albumIndex} parentIdx={23} 
-                                        isMusicLoading={isMusicLoading}
                                         deleteItemFunc={delAlbumFunc} 
                                         likeMusicFunc={likeMusicFunc}
                                         saveMusicFunc={saveMusicFunc}
-                                        viewMusicFunc={viewMusicFunc}
                                             event={{
                                                 onClick: () => {
                                                     setShowMenu("albums/musics")
@@ -265,7 +212,6 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                             delMusicFunc={delMusicFunc}
                             likeMusicFunc={likeMusicFunc}
                             saveMusicFunc={saveMusicFunc}
-                            viewMusicFunc={viewMusicFunc}
                         />
                         : ""
             }

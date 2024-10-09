@@ -1,11 +1,11 @@
 import { Col, Flex } from 'antd';
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { BsPauseCircleFill, BsPlayCircleFill } from 'react-icons/bs';
 import { RiDeleteBinFill, RiHeart3Fill, RiHeart3Line ,RiBookmarkLine, RiBookmarkFill } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
 import { playPause, setActiveSong } from '../../redux/features/playerSlice';
 
-export default function MusicCard({ user,admin, musics,music,musicIndex, parentIdx ,song, deleteItemFunc,event,likeMusicFunc,saveMusicFunc,viewMusicFunc,isMusicLoading}: {user?:any,admin?:boolean,musics?:any, music?: any,musicIndex:number, event?: {onClick:any} ,parentIdx:number,song?:{activeSong:any,currentIndex:any,isPlaying:any},deleteItemFunc?:any,likeMusicFunc?:any,saveMusicFunc?:any,viewMusicFunc?:any,isMusicLoading?:any}) {
+export default function MusicCard({ user,admin, musics,music,musicIndex, parentIdx ,song, deleteItemFunc,event,likeMusicFunc,saveMusicFunc,isMusicLoading}: {user?:any,admin?:boolean,musics?:any, music?: any,musicIndex:number, event?: {onClick:any} ,parentIdx:number,song?:{activeSong:any,currentIndex:any,isPlaying:any},deleteItemFunc?:any,likeMusicFunc?:any,saveMusicFunc?:any,isMusicLoading?:any}) {
     const [musicEvent, setMusicEvent] = useState<{ id?: string; parentIdx?: number, hover?: boolean }>({})
 
     const musicRef=useRef<any>()
@@ -24,7 +24,6 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
             hover: false
         }));
     };
-    // useEffect(() => {
     //     if(user){
     //         const observer = new IntersectionObserver(
     //           ([entry]) => {
@@ -87,7 +86,9 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
                         className={`size-5 absolute top-2 right-2 text-red-700 cursor-pointer ${admin&&musicEvent.id === music.$id && musicEvent.parentIdx === parentIdx && musicEvent.hover ? "block" : "hidden"}`}
                         onClick={(e:any) => {
                             e.stopPropagation()
-                            deleteItemFunc(music)
+                            if(!isMusicLoading){
+                                deleteItemFunc(music)
+                            }
                         }}
                     />
                     <Flex className={`absolute  w-full flex justify-between items-center gap-1 px-2 py-1 bottom-0 ${musicEvent.id === music.$id && musicEvent.parentIdx === parentIdx && musicEvent.hover ? "block" : "hidden"}`}>
@@ -99,7 +100,9 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
                                         className={`size-5 text-red-700 cursor-pointer`}
                                         onClick={(e:any) => {
                                             e.stopPropagation()
-                                            likeMusicFunc(music)
+                                            if(!isMusicLoading){
+                                                likeMusicFunc(music)
+                                            }
                                         }}
                                     />
                                     :musics && <RiHeart3Line
@@ -107,7 +110,9 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
                                         className={`size-5 text-red-700 cursor-pointer`}
                                         onClick={(e:any) => {
                                             e.stopPropagation()
-                                            likeMusicFunc(music)
+                                             if(!isMusicLoading){
+                                                 likeMusicFunc(music)
+                                             }
                                         }}
                                     />
                             }
@@ -121,13 +126,17 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
                                     className={`size-5 text-[var(--color-blue-1)] cursor-pointer`}
                                     onClick={(e:any) => {
                                         e.stopPropagation()
-                                        saveMusicFunc(music)
+                                         if(!isMusicLoading){
+                                             saveMusicFunc(music)
+                                         }
                                 }}/>
                                 :<RiBookmarkLine
                                 className={`size-5 text-[var(--color-blue-1)] cursor-pointer`}
                                 onClick={(e:any) => {
                                     e.stopPropagation()
-                                    saveMusicFunc(music)
+                                     if(!isMusicLoading){
+                                         saveMusicFunc(music)
+                                     }
                                 }}
                             />
                             }

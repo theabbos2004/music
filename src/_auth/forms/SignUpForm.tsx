@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Button, Card, Checkbox, Col, Form, Input, Row } from 'antd';
+import { Button, Card, Col, Form, Input, Row } from 'antd';
 import type { FormProps } from 'antd';
 import { Link } from 'react-router-dom';
 import { ExclamationCircleOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
