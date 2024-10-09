@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Albums, Home, Liked, Marked, PriviteS, Profile, ProfileS } from "./_root/pages"
+import { Home, Liked, Marked, PriviteS, Profile, ProfileS } from "./_root/pages"
 import CreateSlider from "./_root/pages/CreateSlider"
 import AuthLayout from "./_auth/AuthLayout"
 import { SignInForm, SignUpForm, SignUpStep2Form } from "./_auth"
@@ -16,7 +16,6 @@ function App() {
           <Route path="slider" element={<CreateSlider/>}/>
           <Route path="liked" element={<Liked/>}/>
           <Route path="marked" element={<Marked/>}/>
-          <Route path="albums" element={<Albums/>}/>
           <Route path="user/:id" element={<ProfileLayout/>}>
             <Route index element={<Profile/>}/>
             <Route path="setting" element={<SettingLayout/>}>

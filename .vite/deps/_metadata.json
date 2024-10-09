@@ -1,8 +1,202 @@
 {
-  "hash": "a9644f16",
+  "hash": "470aa15d",
   "configHash": "9a913a3a",
-  "lockfileHash": "e3b0c442",
-  "browserHash": "2f2ff6e8",
-  "optimized": {},
-  "chunks": {}
+  "lockfileHash": "1445144b",
+  "browserHash": "97fe6186",
+  "optimized": {
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "d143f609",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "34aa73dd",
+      "needsInterop": false
+    },
+    "react-redux": {
+      "src": "../../node_modules/react-redux/dist/react-redux.mjs",
+      "file": "react-redux.js",
+      "fileHash": "f8fc823c",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "4996edbf",
+      "needsInterop": true
+    },
+    "antd/es/notification/useNotification": {
+      "src": "../../node_modules/antd/es/notification/useNotification.js",
+      "file": "antd_es_notification_useNotification.js",
+      "fileHash": "5785a683",
+      "needsInterop": false
+    },
+    "react-query": {
+      "src": "../../node_modules/react-query/es/index.js",
+      "file": "react-query.js",
+      "fileHash": "aca565bb",
+      "needsInterop": false
+    },
+    "@reduxjs/toolkit": {
+      "src": "../../node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs",
+      "file": "@reduxjs_toolkit.js",
+      "fileHash": "7dd2031e",
+      "needsInterop": false
+    },
+    "antd": {
+      "src": "../../node_modules/antd/es/index.js",
+      "file": "antd.js",
+      "fileHash": "5632f6c5",
+      "needsInterop": false
+    },
+    "@ant-design/icons": {
+      "src": "../../node_modules/@ant-design/icons/es/index.js",
+      "file": "@ant-design_icons.js",
+      "fileHash": "bfe0d477",
+      "needsInterop": false
+    },
+    "appwrite": {
+      "src": "../../node_modules/appwrite/dist/esm/sdk.js",
+      "file": "appwrite.js",
+      "fileHash": "6c5bc093",
+      "needsInterop": false
+    },
+    "react-icons/ai": {
+      "src": "../../node_modules/react-icons/ai/index.mjs",
+      "file": "react-icons_ai.js",
+      "fileHash": "d7e82061",
+      "needsInterop": false
+    },
+    "react-icons/fa": {
+      "src": "../../node_modules/react-icons/fa/index.mjs",
+      "file": "react-icons_fa.js",
+      "fileHash": "d7981973",
+      "needsInterop": false
+    },
+    "react-icons/bs": {
+      "src": "../../node_modules/react-icons/bs/index.mjs",
+      "file": "react-icons_bs.js",
+      "fileHash": "44d7fda9",
+      "needsInterop": false
+    },
+    "react-icons/fa6": {
+      "src": "../../node_modules/react-icons/fa6/index.mjs",
+      "file": "react-icons_fa6.js",
+      "fileHash": "c0ca98ab",
+      "needsInterop": false
+    },
+    "react-icons/ri": {
+      "src": "../../node_modules/react-icons/ri/index.mjs",
+      "file": "react-icons_ri.js",
+      "fileHash": "7fbc4ad4",
+      "needsInterop": false
+    },
+    "antd/es/layout/Sider": {
+      "src": "../../node_modules/antd/es/layout/Sider.js",
+      "file": "antd_es_layout_Sider.js",
+      "fileHash": "3c85fd68",
+      "needsInterop": false
+    },
+    "react-icons/io5": {
+      "src": "../../node_modules/react-icons/io5/index.mjs",
+      "file": "react-icons_io5.js",
+      "fileHash": "489762a3",
+      "needsInterop": false
+    },
+    "antd/es/input/Search": {
+      "src": "../../node_modules/antd/es/input/Search.js",
+      "file": "antd_es_input_Search.js",
+      "fileHash": "2182e548",
+      "needsInterop": false
+    },
+    "react-scroll": {
+      "src": "../../node_modules/react-scroll/modules/index.js",
+      "file": "react-scroll.js",
+      "fileHash": "e27ee50e",
+      "needsInterop": true
+    },
+    "react-icons/io": {
+      "src": "../../node_modules/react-icons/io/index.mjs",
+      "file": "react-icons_io.js",
+      "fileHash": "02ec652a",
+      "needsInterop": false
+    },
+    "antd/es/layout/layout": {
+      "src": "../../node_modules/antd/es/layout/layout.js",
+      "file": "antd_es_layout_layout.js",
+      "fileHash": "4aa0b201",
+      "needsInterop": false
+    },
+    "react-icons/ti": {
+      "src": "../../node_modules/react-icons/ti/index.mjs",
+      "file": "react-icons_ti.js",
+      "fileHash": "b4b65ae5",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-WNYT3RZK": {
+      "file": "chunk-WNYT3RZK.js"
+    },
+    "chunk-ZC7PKCEF": {
+      "file": "chunk-ZC7PKCEF.js"
+    },
+    "chunk-FI6LIC74": {
+      "file": "chunk-FI6LIC74.js"
+    },
+    "chunk-YLTFZWNZ": {
+      "file": "chunk-YLTFZWNZ.js"
+    },
+    "chunk-WOFZKEMA": {
+      "file": "chunk-WOFZKEMA.js"
+    },
+    "chunk-AX42UUQ6": {
+      "file": "chunk-AX42UUQ6.js"
+    },
+    "chunk-QPE4HDTF": {
+      "file": "chunk-QPE4HDTF.js"
+    },
+    "chunk-QWBLDZ7I": {
+      "file": "chunk-QWBLDZ7I.js"
+    },
+    "chunk-QNBAFOYJ": {
+      "file": "chunk-QNBAFOYJ.js"
+    },
+    "chunk-OMLTOSLN": {
+      "file": "chunk-OMLTOSLN.js"
+    },
+    "chunk-KUKBVWS5": {
+      "file": "chunk-KUKBVWS5.js"
+    },
+    "chunk-VN7H5NYT": {
+      "file": "chunk-VN7H5NYT.js"
+    },
+    "chunk-FNFPRW3X": {
+      "file": "chunk-FNFPRW3X.js"
+    },
+    "chunk-JSYVD3HQ": {
+      "file": "chunk-JSYVD3HQ.js"
+    },
+    "chunk-AHKMZG35": {
+      "file": "chunk-AHKMZG35.js"
+    },
+    "chunk-QC42HCUQ": {
+      "file": "chunk-QC42HCUQ.js"
+    },
+    "chunk-HQ6ZTAWL": {
+      "file": "chunk-HQ6ZTAWL.js"
+    },
+    "chunk-TUX7A2JK": {
+      "file": "chunk-TUX7A2JK.js"
+    },
+    "chunk-4SFRHSJ3": {
+      "file": "chunk-4SFRHSJ3.js"
+    },
+    "chunk-EQCVQC35": {
+      "file": "chunk-EQCVQC35.js"
+    }
+  }
 }

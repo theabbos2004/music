@@ -1,4 +1,4 @@
-import { AddAdvertisingModal, AddMusicAdvertisingModal, AddMusicModal, MusicCard } from '../shared'
+import { AddAdvertisingModal, AddMusicAdvertisingModal, MusicCard } from '../shared'
 import { IActiveSong } from '../../types'
 import { Col, Flex, Row } from 'antd'
 import { useEffect, useState } from 'react';

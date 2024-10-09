@@ -3,15 +3,11 @@ import { Button, Card, Checkbox, Col, Form, Input, Row } from 'antd';
 import type { FormProps } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckCircleOutlined, ExclamationCircleOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
-import { useUserContext } from '../../contexts/AuthContext/AuthContext';
 import { useMainContext } from '../../contexts/MainContext';
 import { usegetCurrentUser, useSignInAccount, useSignOutAccount } from '../../lib/react-query/queris';
-import { appwriteConfig, database } from '../../lib/AppWrite/config';
-import { Query } from 'appwrite';
 
 
 const SignInForm: React.FC = () => {
-  const { checkAuthUser } = useUserContext();
   const { openNotification } = useMainContext()
   const { mutateAsync: signInAccount } = useSignInAccount()
   const { mutateAsync: signOutAccount } = useSignOutAccount()

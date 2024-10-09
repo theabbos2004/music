@@ -2,19 +2,17 @@ import { Button, Card, Col, ConfigProvider, Flex, Modal } from 'antd';
 import { useMainContext } from '../../contexts/MainContext';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
-import { useAddMusicToAdvertising, usegetCurrentUser, usegetCurrentUserQuery, useGetMusics } from '../../lib/react-query/queris';
+import { useAddMusicToAdvertising, usegetCurrentUserQuery, useGetMusics } from '../../lib/react-query/queris';
 import Search from 'antd/es/input/Search';
 
 export default function AddMusicAdvertisingModal({ isModalOpen, toggleModal, selectedAdvertising }: { isModalOpen: any, toggleModal: any, selectedAdvertising: any }) {
     const { openNotification,theme } = useMainContext()
-    const [user, setUser] = useState<any>()
     const [isLoading, setIsLoading] = useState<boolean>()
     const [musics, setMusics] = useState<any>()
     const [selectMusics, setSelectMusics] = useState<any>()
     const [search, setSearch] = useState<any>("")
     const { mutateAsync: addMusicToAdvertising } = useAddMusicToAdvertising()
     const { mutateAsync: getMusics } = useGetMusics()
-    const { mutateAsync: getCurrentUser } = usegetCurrentUser()
     const { data: currentUser } = usegetCurrentUserQuery()
     const modalStyles = {
         content:{
@@ -73,25 +71,12 @@ export default function AddMusicAdvertisingModal({ isModalOpen, toggleModal, sel
 
     useEffect(() => {
         getMusicsFunc()
-        getUser()
     }, [currentUser])
 
     const getMusicsFunc = async () => {
         const getMusicsRes = await getMusics()
         if (getMusicsRes.data) {
             setMusics(getMusicsRes.data.documents)
-        }
-    }
-    const getUser = async () => {
-        try {
-            const user = await getCurrentUser()
-            if (user.error) {
-                throw new Error(user.error)
-            }
-            setUser(user.data)
-        }
-        catch (error) {
-            openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
         }
     }
 
