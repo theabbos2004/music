@@ -1,0 +1,8 @@
+export { default as ProfileInfo} from "./Profile"
+export { default as MusicList} from "./MusicList"
+export { default as FilterMusicsList} from "./FilterMusicsList"
+export { default as PriviteSComp} from "./PriviteSComp"
+export { default as ProfileSComp} from "./ProfileSComp"
+export { default as LikedComp} from "./LikedComp"
+export { default as SavedComp} from "./SavedComp"
+export { default as CreateSliderComp} from "./CreateSliderComp"
