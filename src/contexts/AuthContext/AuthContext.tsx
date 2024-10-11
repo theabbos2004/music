@@ -28,7 +28,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     try {
       const currentAccount = await getCurrentUser();           
-      currentAccount.error && signOutAccount()
+      if(currentAccount.error) {
+        signOutAccount()
+        throw new Error(currentAccount.error)
+      }
       const {data}=currentAccount
       setUser({
         id: data.$id,

@@ -39,10 +39,11 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
     if (savedTheme === 'light' || savedTheme === 'dark') {
       return savedTheme;
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return "light"
   });
-
+  
   useEffect(() => {
+    
     if (theme === 'dark') {
       localStorage.setItem('theme','dark')
       document.documentElement.classList.add('dark');
