@@ -10,7 +10,7 @@ const Search=({event}:{event:{onchageSearch:any,closeSearch:any}}) => (
       type='text' 
       className='h-full w-[85%] p-0 m-0 bg-transparent outline-none px-3 text-gray-800 dark:text-gray-100 text-center'
       placeholder="input search text"
-      onChange={(e)=>{event?.onchageSearch(e.target.value)}}
+      onChange={(e)=>{event?.onchageSearch(e.target.value||"")}}
       />
       <Flex className='sm:hidden w-[15%] justify-center items-center  group-hover:border-[var(--color-green)] border-gray-300 border-l-[0.1rem] text-[var(--color-blue-1)]'>
          <IoCloseOutline
