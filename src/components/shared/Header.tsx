@@ -58,7 +58,7 @@ const HeaderTop=({currentUser}:{currentUser:any})=> {
                     className={`size-6 text-[var(--color-blue-1)] cursor-pointer ${activeSearch || collapsed.show ?"hidden":"block sm:hidden"}`}
                     onClick={()=>{setCollapsed({collapsed:false,show:true})}}
                 />
-                <Link to={"/"} className=" no-underline text-[--color-green] hover:text-gray-400">
+                <Link to={"/"} className={`no-underline text-[--color-green] hover:text-gray-400 ${activeSearch?"hidden":"block"}`}>
                     Music
                 </Link>
             </Flex>
@@ -128,12 +128,12 @@ const HeaderTop=({currentUser}:{currentUser:any})=> {
                                 </Link>
                             </>
                             :<>
-                                <Button>
+                                <Button className="h-8 sm:h-9">
                                     <Link to="sign-up">
                                         Sign Up
                                     </Link>
                                 </Button>
-                                <Button type="primary">
+                                <Button type="primary" className="h-8 sm:h-9">
                                     <Link to="sign-in">
                                         Sign In
                                     </Link>

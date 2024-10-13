@@ -1,4 +1,4 @@
-import { Row, Slider } from 'antd'
+import { Flex, Slider } from 'antd'
 import { calculateTime } from '../../hooks/changeTime'
 import { useDispatch } from 'react-redux'
 import { setCurrentTime } from '../../redux/features/playerSlice'
@@ -10,7 +10,7 @@ export default function SliderMusic({musicDuration,currentTime}:{musicDuration?:
     dispatch(setCurrentTime(seconds))
   }
   return (
-    <Row className='gap-2 justify-between items-center leading-none text-xs'>
+    <Flex className='gap-3 justify-between items-center leading-none text-xs text-[var(--color-gray)] dark:text-gray-200'>
         <div>{currentTime && calculateTime(currentTime)}</div>
         <Slider
             max={musicDuration}
@@ -23,6 +23,6 @@ export default function SliderMusic({musicDuration,currentTime}:{musicDuration?:
             className='w-96 m-0 text-red-700' 
             />
         <div>{musicDuration && calculateTime(musicDuration)}</div>
-    </Row>
+    </Flex>
   )
 }

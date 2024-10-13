@@ -4,8 +4,7 @@ import { BsBookmark, BsCaretLeft, BsCaretRight, BsHeart, BsPauseCircleFill, BsPl
 import { useDispatch } from 'react-redux';
 import { playPause, setCurrentTime, setMusicDuration } from '../../redux/features/playerSlice';
 
-const Player = ({ activeSong,isPlaying, currentTime, repeat, handlePlayPause,handlePrevSong,handleNextSong }: { activeSong?: any,isActive:boolean, isPlaying?: any, currentTime: any, repeat?: any, handlePlayPause?: any ,handlePrevSong:()=>Promise<boolean>,handleNextSong:()=>Promise<boolean>}) => {
-
+const Player = ({ activeSong,isPlaying, currentTime, repeat, handlePlayPause,handlePrevSong,handleNextSong ,likeMusicFunc,saveMusicFunc,isMusicLoading}: { activeSong?: any,isActive:boolean, isPlaying?: any, currentTime: any, repeat?: any, handlePlayPause?: any ,handlePrevSong:()=>Promise<boolean>,handleNextSong:()=>Promise<boolean>,likeMusicFunc:any,saveMusicFunc:any, isMusicLoading:boolean}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isMusicPlay, setIsMusicPlay] = useState<boolean>(false)
   const dispatch = useDispatch()
@@ -54,11 +53,12 @@ const Player = ({ activeSong,isPlaying, currentTime, repeat, handlePlayPause,han
     }
   }, [currentTime])  
   return (
-    <Row className='justify-center items-center gap-2'>
+    <Row className='justify-center items-center gap-2 text-[var(--color-gray)] dark:text-gray-200'>
       <BsBookmark 
         className=' cursor-pointer'
+        onClick={()=>!isMusicLoading && saveMusicFunc(activeSong)}
       />
-      <Row className=' items-center gap-1 text-xl text-[var(--color-gray)]'>
+      <Row className=' items-center gap-1 text-xl'>
         <BsCaretLeft 
           onClick={async ()=>{
             const handlePrevSongRes= await handlePrevSong()
@@ -90,7 +90,8 @@ const Player = ({ activeSong,isPlaying, currentTime, repeat, handlePlayPause,han
         />
       </Row>
       <BsHeart 
-        className=' cursor-pointer'
+        className='cursor-pointer'
+        onClick={()=>!isMusicLoading && likeMusicFunc(activeSong)}
       />
       <audio
         className='hidden'

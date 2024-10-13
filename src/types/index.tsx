@@ -53,6 +53,8 @@ export type IUser={
     email: string,
     imageUrl: string,
     bio: string,
+    liked_musics?:any[],
+    saved?:any
   };
   export type INewUser = {
     accountId:string;

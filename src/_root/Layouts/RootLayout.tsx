@@ -19,10 +19,10 @@ const RootLayout : React.FC=()=>{
         <HeaderTop currentUser={currentUser?.data}/>
         <Outlet/>
         <AudioList/>
+        {player?.activeSong?.music_url && (
+            <MusicPlayer/>
+        )}
       </Layout>
-      {player?.activeSong?.music_url && (
-          <MusicPlayer/>
-      )}
     </Layout>
   );
 }
