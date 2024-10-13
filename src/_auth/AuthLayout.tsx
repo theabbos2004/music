@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import BgImg from "../assets/img/bg-auth.png"
 export default function AuthLayout() {
   return (
-    <div className='w-full h-screen flex'>
+    <div className='w-full h-screen flex dark:bg-[var(--dark-bg-blue)] dark:md:bg-white'>
        <Image
         className='hidden md:block w-1/2 h-full object-cover bg-no-repeat'
         src={BgImg}
@@ -14,7 +14,7 @@ export default function AuthLayout() {
           />
         }
       />
-      <section className="w-1/2 flex justify-center self-center">
+      <section className="size-full md:w-1/2 flex justify-center items-center self-center">
         <Outlet/>
       </section>
     </div>

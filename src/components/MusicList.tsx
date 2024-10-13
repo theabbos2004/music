@@ -41,6 +41,9 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
     
 
     const addMusicSubmitFunc = async ({ title, singer, image_url, music_url }: { title: string, singer: string, image_url: any, music_url: any }) => {
+        if(!user){
+            throw new Error("register first")
+          }
         const newMusic = await createMusic({
             creator: currentUser?.$id,
             title,
@@ -53,6 +56,9 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
     }
     const delMusicFunc = async (doccumentId: string) => {
         try {
+            if(!user){
+                throw new Error("register first")
+              }
             const delColDocRes = await delColDoc({ collectionId: appwriteConfig.musicsCollectionId, doccumentId })
             if (delColDocRes?.error) {
                 throw new Error(delColDocRes.error)
@@ -65,6 +71,9 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
     }
     const delAlbumFunc = async (doccumentId: string) => {
         try {
+            if(!user){
+                throw new Error("register first")
+              }
             const delColDocRes = await delColDoc({ collectionId: appwriteConfig.albumsCollectionId, doccumentId })
             if (delColDocRes?.error) {
                 throw new Error(delColDocRes.error)
@@ -77,6 +86,9 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
     }
     const likeMusicFunc = async (music: any) => {
         try {
+            if(!user){
+                throw new Error("register first")
+              }
             const {liked_musics}=user
             let newLikes=[]
             let availableUser=false

@@ -18,7 +18,7 @@ export default function AudioList() {
   },[currentSongs])
   return (
     <Col 
-      className={`${isMusicList?"flex":"hidden"}  flex-col p-3 fixed right-0 top-16 h-[calc(100%-8rem)] w-64 bg-[var(--color-gray)] rounded-s-xl z-20 gap-3`}
+      className={`${isMusicList?"flex":"hidden"}  flex-col p-3 fixed right-0 top-16 h-[calc(100%-8rem)] w-64 bg-slate-400 dark:bg-slate-700 rounded-s-xl z-20 gap-3`}
       onMouseLeave={()=>dispatch(setIsMusicList())}
       >
       {
