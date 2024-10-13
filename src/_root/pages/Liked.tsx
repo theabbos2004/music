@@ -20,9 +20,9 @@ export default function Liked() {
   const { isPlaying, activeSong, currentIndex } = useSelector((state: RootState) => state?.player);
   useEffect(() => {
     if (currentUser) {
-      getUserFunc()
+      currentUser?.data && getUserFunc()
       const unSubscribeMusicCol = client.subscribe([`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.savesCollectionId}.documents`,`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.userCollectionId}.documents`,`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.musicsCollectionId}.documents`, `databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.userCollectionId}.documents`], () => {
-        getUserFunc()
+        currentUser?.data && getUserFunc()
       });
       return () => {
         unSubscribeMusicCol()
