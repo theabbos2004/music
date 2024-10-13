@@ -1,6 +1,6 @@
 import { Image } from 'antd'
 import { Outlet } from 'react-router-dom'
-import BgImg from "../../public/assets/img/bg-auth.png"
+import BgImg from "../assets/img/bg-auth.png"
 export default function AuthLayout() {
   return (
     <div className='w-full h-screen flex'>

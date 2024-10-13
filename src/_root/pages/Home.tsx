@@ -22,11 +22,11 @@ export default function Home() {
   useEffect(() => {
     getMusicsFunc()
     getAlbumsFunc()
-    currentUser && getUserFunc()
+    currentUser?.data && getUserFunc()
     const unSubscribeMusicCol = client.subscribe([`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.viewsCollectionId}.documents`,`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.musicsCollectionId}.documents`,`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.savesCollectionId}.documents`, `databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.albumsCollectionId}.documents`, `databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.userCollectionId}.documents`], () => {
       getMusicsFunc()
       getAlbumsFunc()
-      getUserFunc()
+      currentUser?.data && getUserFunc()
     });
     return () => {
       unSubscribeMusicCol()
