@@ -169,7 +169,6 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
     const viewMusicFunc=async (music:any)=>{        
         try{
             setIsMusicLoading(true)
-            
             if(user){
                 let viewsId=user?.views?.$id
                 if(!user?.views){
