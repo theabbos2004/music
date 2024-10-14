@@ -14,7 +14,7 @@ export default function ProfileLeft({ user, edit }: { user: any, edit?: boolean 
     return (
         <Flex className={`flex-col gap-1 sm:gap-0 items-around ${edit ? "w-full" : "w-2/4 sm:w-3/4 lg:w-2/4 xl:w-1/3"}`}>
             <Flex className="gap-6">
-                <Col>
+                <Col span={edit? 10 : ""}>
                     <Form.Item<IFORMEDITPROFILE>
                         name="imageUrl"
                         className="m-0"
@@ -49,7 +49,7 @@ export default function ProfileLeft({ user, edit }: { user: any, edit?: boolean 
                             }
                     </Form.Item>
                 </Col>
-                <Col span={14} className="px-4 flex flex-col ">
+                <Col span={edit?12:14} className="px-4 flex flex-col">
                     <Row className="flex-nowrap h-2/4 gap-4 items-center justify-between">
                         {
                             pathname.includes("setting") ?
@@ -60,7 +60,7 @@ export default function ProfileLeft({ user, edit }: { user: any, edit?: boolean 
                                 >
                                     <input 
                                         autoComplete="on"
-                                        className='gap-1 text-white whitespace-nowrap overflow-hidden overflow-ellipsis border-0 bg-transparent outline-none' placeholder="name" 
+                                        className='w-full gap-1 text-white whitespace-nowrap overflow-hidden overflow-ellipsis border-0 bg-transparent outline-none' placeholder="name" 
                                         readOnly={!edit} />
                                 </Form.Item>
                             :

@@ -1,7 +1,7 @@
 import { Col, Flex, Row } from "antd";
 import { AddAlbumModal, AddMusicModal, MusicCard, MusicFilter } from "./shared";
 import { memo, useEffect, useState } from "react";
-import { useCreateMusic, useCreateSaveMusic,  useDelColDoc, useGetFilterMusic,useSaveMusic, useUpdateAccount } from "../lib/react-query/queris";
+import { useCreateMusic, useCreateSaveMusic,  useCreateViewMusic,  useDelColDoc, useGetFilterMusic,useSaveMusic, useUpdateAccount, useViewedMusic } from "../lib/react-query/queris";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { IActiveSong } from "../types";
 import { FilterMusicsList } from ".";
@@ -22,7 +22,9 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
     const { mutateAsync: updateAccount } = useUpdateAccount()
     const { mutateAsync: createSaveMusic } = useCreateSaveMusic()
     const { mutateAsync: saveMusic } = useSaveMusic()
-    const [ isMusicLoading,setIsMusicLoading]=useState<boolean>()
+    const { mutateAsync: createViewMusic } = useCreateViewMusic()
+    const { mutateAsync: viewedMusic } = useViewedMusic()
+    const [ isMusicLoading,setIsMusicLoading]=useState<boolean>(false)
     const { openNotification} = useMainContext()
     useEffect(() => {
         if (getFilterMusic) {
@@ -164,6 +166,50 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
             setIsMusicLoading(false)
         }
     }
+    const viewMusicFunc=async (music:any)=>{        
+        try{
+            setIsMusicLoading(true)
+            
+            if(user){
+                let viewsId=user?.views?.$id
+                if(!user?.views){
+                    const createViewMusicRes=await createViewMusic({userId:user?.$id})
+                    if(createViewMusicRes.error){
+                        throw new Error(createViewMusicRes.error)
+                    }
+                    viewsId=createViewMusicRes?.data?.$id
+                    
+                }
+                let newViews=[]
+                let availableMusic=false
+                
+                if(user?.views?.musics?.length===0){
+                    newViews.push(music)
+                }
+                else{
+                    user?.views?.musics?.forEach((viewedMusic:any)=> {
+                        if(viewedMusic?.$id!==music?.$id){
+                            newViews.push(viewedMusic)
+                        }
+                        else{
+                            availableMusic=true
+                        }
+                        !availableMusic && newViews.push(music)
+                    })
+                }
+                console.log(availableMusic);
+                if(!availableMusic){
+                    const viewsMusicRes=await viewedMusic({musics:newViews,viewId:viewsId})
+                    if(viewsMusicRes.error){
+                        throw new Error(viewsMusicRes.error)
+                    }
+                }
+            }
+        }
+        finally{
+            setIsMusicLoading(false)
+        }
+    }
     
     return (
         <Col className="pb-[5rem] px-6">
@@ -178,6 +224,7 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                         delMusicFunc={delMusicFunc}
                         likeMusicFunc={likeMusicFunc}
                         saveMusicFunc={saveMusicFunc}
+                        viewMusicFunc={viewMusicFunc}
                     />
                     :
                     showMenu === "albums" ?
@@ -206,6 +253,7 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                                         deleteItemFunc={delAlbumFunc} 
                                         likeMusicFunc={likeMusicFunc}
                                         saveMusicFunc={saveMusicFunc}
+                                        viewMusicFunc={viewMusicFunc}
                                             event={{
                                                 onClick: () => {
                                                     setShowMenu("albums/musics")
@@ -224,6 +272,7 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                             delMusicFunc={delMusicFunc}
                             likeMusicFunc={likeMusicFunc}
                             saveMusicFunc={saveMusicFunc}
+                            viewMusicFunc={viewMusicFunc}
                         />
                         : ""
             }

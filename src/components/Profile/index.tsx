@@ -17,7 +17,7 @@ function ProfileInfo({ user, edit }: { user?: any, edit?: boolean }) {
             <Form.Item<IFORMEDITPROFILE>
                 name="bg_img_url"
                 style={{backgroundImage:`url(${bgImage?.urlImg})`}}
-                className='h-60 bg-center bg-cover bg-gray-500 dark:bg-gray-800 flex justify-center items-center m-0 p-0'
+                className='w-full relative overflow-hidden h-60 bg-center bg-cover bg-gray-500 dark:bg-gray-800 flex justify-center items-center m-0 p-0'
                 getValueFromEvent={(e: any) => {
                     const urlImg=URL.createObjectURL(e.file.originFileObj)
                     setBgImage({urlImg,files:e.files})
