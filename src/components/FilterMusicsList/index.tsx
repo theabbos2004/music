@@ -4,7 +4,7 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 import { Element } from 'react-scroll';
 import { MusicCard } from '../shared';
 
-function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, isPlaying, currentIndex},filterMusics,addButton,delMusicFunc,likeMusicFunc,saveMusicFunc}: any) {
+function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, isPlaying, currentIndex},filterMusics,addButton,delMusicFunc,likeMusicFunc,saveMusicFunc,viewMusicFunc}: any) {
     return (
         <Col>
             {
@@ -41,6 +41,7 @@ function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, 
                                             likeMusicFunc={likeMusicFunc}
                                             saveMusicFunc={saveMusicFunc}
                                             isMusicLoading={isMusicLoading}
+                                            viewMusicFunc={viewMusicFunc}
                                             />
                                         ))
                                 }

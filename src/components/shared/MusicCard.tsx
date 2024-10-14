@@ -5,11 +5,11 @@ import { RiDeleteBinFill, RiHeart3Fill, RiHeart3Line ,RiBookmarkLine, RiBookmark
 import { useDispatch } from 'react-redux';
 import { playPause, setActiveSong } from '../../redux/features/playerSlice';
 
-export default function MusicCard({ user,admin, musics,music,musicIndex, parentIdx ,song, deleteItemFunc,event,likeMusicFunc,saveMusicFunc,isMusicLoading}: {user?:any,admin?:boolean,musics?:any, music?: any,musicIndex:number, event?: {onClick:any} ,parentIdx:number,song?:{activeSong:any,currentIndex:any,isPlaying:any},deleteItemFunc?:any,likeMusicFunc?:any,saveMusicFunc?:any,isMusicLoading?:any}) {
+export default function MusicCard({ user,admin, musics,music,musicIndex, parentIdx ,song, deleteItemFunc,event,likeMusicFunc,saveMusicFunc,viewMusicFunc,isMusicLoading}: {user?:any,admin?:boolean,musics?:any, music?: any,musicIndex:number, event?: {onClick:any} ,parentIdx:number,song?:{activeSong:any,currentIndex:any,isPlaying:any},deleteItemFunc?:any,likeMusicFunc?:any,saveMusicFunc?:any,viewMusicFunc?:any,isMusicLoading?:any}) {
     const [musicEvent, setMusicEvent] = useState<{ id?: string; parentIdx?: number, hover?: boolean }>({})
 
     const musicRef=useRef<any>()
-
+    
     const handleMouseEnter = (id: string, parentIdx: number) => {
         setMusicEvent(() => ({
             id,
@@ -77,6 +77,7 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
                     <BsPlayCircleFill
                         onClick={async (e:any) => {
                             e.stopPropagation()
+                            viewMusicFunc(music)
                             dispatch(setActiveSong({ song: music, songs: musics, i: musicIndex }));
                             dispatch(playPause(true));
                         }}

@@ -756,6 +756,18 @@ export const addMusicToAlbum =async (albumId:string,musics:any):Promise<{data?:a
 export const getFilterMusic=async ():Promise<{data?:any,error?:any}>=>{
     try{
         const filterMenu = await [
+            {id:"1",title:"Top Music",filter:(musicList:any)=>{
+                for (let i = 0; i < musicList?.length - 1; i++) {
+                    for (let j = 0; j < musicList.length - 1 - i; j++) {
+                        if (musicList[j]?.viewers?.length < musicList[j + 1]?.viewers?.length) {
+                            let temp = {...musicList[j]};
+                            musicList[j] = {...musicList[j+1]};
+                            musicList[j + 1] = temp;
+                        }
+                    }
+                }
+                    return musicList
+            }},
             {id:"2",title:"Top Like",filter:(musicList:any)=>{
                 for (let i = 0; i < musicList.length - 1; i++) {
                     for (let j = 0; j < musicList.length - 1 - i; j++) {
@@ -768,19 +780,7 @@ export const getFilterMusic=async ():Promise<{data?:any,error?:any}>=>{
                 }
                 
                 return musicList
-            }},
-            {id:"1",title:"Top Music",filter:(musicList:any)=>{
-                    for (let i = 0; i < musicList?.length - 1; i++) {
-                        for (let j = 0; j < musicList.length - 1 - i; j++) {
-                                if (musicList[j]?.views?.length > musicList[j + 1]?.views?.length) {
-                                    let temp = {...musicList[j]};
-                                    musicList[j] = {...musicList[j+1]};
-                                    musicList[j + 1] = temp;
-                                }
-                        }
-                    }
-                    return musicList
-            }},
+            }}
         ]
         if(!filterMenu) throw Error        
         return {data:filterMenu}

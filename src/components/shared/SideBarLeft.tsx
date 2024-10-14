@@ -51,7 +51,7 @@ function SideBarLeft() {
     return (
         <Sider trigger={null} collapsible collapsed={false} theme={theme}
             className={`
-                ${!collapsed?.show ? "hidden" : "flex"} sm:flex relative ${pathname.includes("setting") ? "sm:hidden" : "sm:flex"}`}
+                ${!collapsed?.show ? "hidden" : "flex"} relative ${pathname.includes("setting") ? "hidden" : "sm:flex"}`}
             style={{ borderRight: "0.1rem solid white" }}
             width={collapsed?.collapsed ? "10rem" : "5rem"}
         >
