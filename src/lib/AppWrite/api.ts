@@ -755,21 +755,21 @@ export const addMusicToAlbum =async (albumId:string,musics:any):Promise<{data?:a
 // ============================ FILTER MUSIC
 export const getFilterMusic=async ():Promise<{data?:any,error?:any}>=>{
     try{
-        const filterMenu = await [
+        const filterMenu = [
             {id:"1",title:"Top Music",filter:(musicList:any)=>{
-                let newMusicList=musicList
-                // for (let i = 0; i < musicList?.length - 1; i++) {
-                //     for (let j = 0; j < musicList.length - 1 - i; j++) {
-                //         if (musicList[j]?.viewers?.length < musicList[j + 1]?.viewers?.length) {
-                //             let temp = {...musicList[j]};
-                //             musicList[j] = {...musicList[j+1]};
-                //             musicList[j + 1] = temp;
-                //             console.log(musicList[j+1]);
-                //         }
-                //     }
-                // }
-                
-                return newMusicList
+                if(musicList){
+                    let newMusicList=[...musicList]
+                    for (let i = 0; i < newMusicList?.length - 1; i++) {
+                        for (let j = 0; j < newMusicList.length - 1 - i; j++) {
+                            if (newMusicList[j]?.viewers?.length > newMusicList[j + 1].viewers?.length) {
+                                let temp = {...newMusicList[j]};
+                                newMusicList[j] = {...newMusicList[j+1]};
+                                newMusicList[j + 1] = temp;
+                            }    
+                        }
+                    }     
+                    return newMusicList.reverse()
+                }
             }},
             {id:"2",title:"Top Like",filter:(musicList:any)=>{
                 for (let i = 0; i < musicList.length - 1; i++) {

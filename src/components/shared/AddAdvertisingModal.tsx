@@ -8,6 +8,7 @@ import { useCreateAdvertising, usegetCurrentUserQuery } from '../../lib/react-qu
 export default function AddAdvertisingModal({isModalOpen,toggleModal}:{isModalOpen:any,toggleModal:any}) {
     const { openNotification,theme } = useMainContext()
     const [ isLoading , setIsLoading] = useState<boolean>()
+    const [fileList, setFileList] = useState<any[]>([]);
     const [form] = Form.useForm();
     const {mutateAsync:createAdvertising}=useCreateAdvertising()
       const modalStyles = {
@@ -89,8 +90,8 @@ export default function AddAdvertisingModal({isModalOpen,toggleModal}:{isModalOp
                 className='flex justify-center'
                 rules={[{ required: true, message: "Please upload Image!" }]}
             >
-                <Upload style={{width:"100%"}} name="logo" action="/upload.do" listType="picture"  maxCount={1}>
-                    <Button className=' w-full text-wrap'>Click to upload image</Button>
+                <Upload accept=".jpg,.png" className='w-full' action="/upload.do" listType="picture"  maxCount={1} fileList={fileList} onChange={({fileList})=>setFileList(fileList)}>
+                    <Button className='w-full text-wrap'>Click to upload image</Button>
                 </Upload>
             </Form.Item>
             <Form.Item className='w-full justify-center'>

@@ -47,7 +47,6 @@ function SideBarLeft() {
             openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
         }
     }
-
     return (
         <Sider trigger={null} collapsible collapsed={false} theme={theme}
             className={`

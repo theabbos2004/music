@@ -31,7 +31,7 @@ export default function Home() {
     return () => {
       unSubscribeMusicCol()
     }
-  }, [currentUser])
+  }, [])
   useEffect(()=>{
     getMusicsFunc()
   },[searchWord])

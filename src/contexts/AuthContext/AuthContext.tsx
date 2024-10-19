@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { IAuthContextType, IUser } from "../../types";
-import { usegetCurrentUser, useSignOutAccount } from "../../lib/react-query/queris";
+import { usegetCurrentUser, usegetCurrentUserQuery, useSignOutAccount } from "../../lib/react-query/queris";
+import { appwriteConfig, client } from "../../lib/AppWrite/config";
 
 
 
@@ -18,16 +19,17 @@ const AuthContext = createContext<IAuthContextType>(INITIAL_STATE);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<IUser | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   
   const {mutateAsync:getCurrentUser}=usegetCurrentUser()
   const {mutateAsync:signOutAccount}=useSignOutAccount()
+  const {data:getCurrentUserQuery}=usegetCurrentUserQuery()
 
   const checkAuthUser = async () => {
     setIsLoading(true);
     try {
-      const currentAccount = await getCurrentUser();           
+      const currentAccount = await getCurrentUser();
       if(currentAccount.error) {
         signOutAccount()
         throw new Error(currentAccount.error)
@@ -44,6 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsAuthenticated(true);
       return {data};
     } catch (error) {
+      setIsAuthenticated(false);
       return {error};
     } finally {
       setIsLoading(false);
@@ -51,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
   useEffect(() => {
     checkAuthUser();
-  }, []);
+  }, [getCurrentUserQuery]);
   
   const value = {
     user,

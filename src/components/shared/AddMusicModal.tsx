@@ -1,6 +1,5 @@
 import { Button, ConfigProvider, Form, FormProps, Input, Modal, Upload } from 'antd';
 import { IActiveSong } from '../../types';
-import { RcFile } from 'antd/es/upload';
 import { useMainContext } from '../../contexts/MainContext';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
@@ -8,23 +7,10 @@ import { useState } from 'react';
 export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isModalOpen:any,toggleModal:any,submitFunc:any}) {
     const { openNotification ,theme} = useMainContext()
     const [ isLoading , setIsLoading] = useState<boolean>()
+    const [fileList, setFileList] = useState<any[]>([]);
+
     const [form] = Form.useForm();
 
-    const uploadProps = {
-        beforeUpload: (file:any)=>handleUpload(file),
-        maxCount: 1,
-    };
-    const handleUpload = (file: RcFile) => {
-    try{
-        const isMp3 = file.type === 'audio/mpeg';
-        if (!isMp3) {
-        throw Error("You can only upload MP3 files!")
-        }
-    }
-    catch(error){
-        openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
-    }
-    };
       const modalStyles = {
         content:{
             backgroundColor:`${theme==="dark"&&"var(--color-blue-1)"}`,
@@ -79,16 +65,30 @@ export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isMo
     >
         <Form
             form={form}
-            initialValues={{
-                remember: false
-            }}
             name="create-music"
             onFinish={onFinish}
             layout="vertical"
             className=' w-full py-4'
             autoComplete="off"
         >
-
+            <Form.Item<IActiveSong>
+                name="music_url"
+                className='flex justify-center'
+                rules={[{ required: true, message: "Please upload music!" }]}
+            >
+                <Upload accept=".mp3,.wav"  maxCount={1} fileList={fileList} onChange={({fileList})=>setFileList(fileList)}>
+                    <Button>Click to upload music</Button>
+                </Upload>
+            </Form.Item>
+            <Form.Item<IActiveSong>
+                name="image_url"
+                className='flex justify-center'
+                rules={[{ required: true, message: "Please upload Image!" }]}
+            >
+                <Upload accept=".jpg,.png" className="w-full" action="/upload.do" listType="picture"  maxCount={1} fileList={fileList} onChange={({fileList})=>setFileList(fileList)}>
+                    <Button className=' w-full text-wrap'>Click to upload image</Button>
+                </Upload>
+            </Form.Item>
 
             <Form.Item<IActiveSong>
                 name="title" 
@@ -103,25 +103,6 @@ export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isMo
                 rules={[{ required: true, message: "Please input singer name!"}]}
             >
                 <Input  className='gap-1' placeholder="singer name" />
-            </Form.Item>
-            <Form.Item<IActiveSong>
-                name="image_url"
-                className='flex justify-center'
-                rules={[{ required: true, message: "Please upload Image!" }]}
-            >
-                <Upload className="" style={{width:"100%"}} name="logo" action="/upload.do" listType="picture"  maxCount={1}>
-                    <Button className=' w-full text-wrap'>Click to upload image</Button>
-                </Upload>
-            </Form.Item>
-
-            <Form.Item<IActiveSong>
-                name="music_url"
-                className='flex justify-center'
-                rules={[{ required: true, message: "Please upload music!" }]}
-            >
-                <Upload {...uploadProps} accept=".mp3,.wav"  maxCount={1}>
-                    <Button>Click to upload music</Button>
-                </Upload>
             </Form.Item>
             <Form.Item className='w-full justify-center'>
             <Button type="primary" className='w-full p-4 rounded-xl' htmlType="submit" loading={isLoading}>
