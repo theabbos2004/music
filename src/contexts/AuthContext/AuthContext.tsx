@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { IAuthContextType, IUser } from "../../types";
 import { usegetCurrentUser, usegetCurrentUserQuery, useSignOutAccount } from "../../lib/react-query/queris";
-import { appwriteConfig, client } from "../../lib/AppWrite/config";
 
 
 
