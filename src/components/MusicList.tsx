@@ -196,7 +196,6 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                         !availableMusic && newViews.push(music)
                     })
                 }
-                console.log(availableMusic);
                 if(!availableMusic){
                     const viewsMusicRes=await viewedMusic({musics:newViews,viewId:viewsId})
                     if(viewsMusicRes.error){
@@ -209,7 +208,6 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
             setIsMusicLoading(false)
         }
     }
-    
     return (
         <Col className="pb-[5rem] px-6">
             <Row className="flex-col sm:flex-row items-center justify-center sm:justify-between">

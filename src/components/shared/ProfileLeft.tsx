@@ -26,7 +26,7 @@ export default function ProfileLeft({ user, edit }: { user: any, edit?: boolean 
                             {
                                 pathname.includes("setting") ?
                                     <Upload
-                                            name="avatar"
+                                            accept=".jpg,.png"
                                             listType={"picture-circle"}
                                             className="avatar-uploader flex flex-col w-full h-full"
                                             showUploadList={false}

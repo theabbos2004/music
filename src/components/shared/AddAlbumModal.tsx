@@ -8,6 +8,7 @@ import { useCreateAlbum, usegetCurrentUserQuery } from '../../lib/react-query/qu
 export default function AddAlbumModal({isModalOpen,toggleModal}:{isModalOpen:any,toggleModal:any}) {
     const { openNotification,theme } = useMainContext()
     const [ isLoading , setIsLoading] = useState<boolean>()
+    const [fileList, setFileList] = useState<any[]>([]);
     const [form] = Form.useForm();
     const {mutateAsync:createAlbum}=useCreateAlbum()
       const modalStyles = {
@@ -70,9 +71,6 @@ export default function AddAlbumModal({isModalOpen,toggleModal}:{isModalOpen:any
     >
         <Form
             form={form}
-            initialValues={{
-                remember: false
-            }}
             name="create-music"
             onFinish={onFinish}
             layout="vertical"
@@ -100,7 +98,7 @@ export default function AddAlbumModal({isModalOpen,toggleModal}:{isModalOpen:any
                 className='flex justify-center'
                 rules={[{ required: true, message: "Please upload Image!" }]}
             >
-                <Upload className="" style={{width:"100%"}} name="logo" action="/upload.do" listType="picture"  maxCount={1}>
+                <Upload accept=".jpg,.png" className="w-full" action="/upload.do" listType="picture" maxCount={1} fileList={fileList} onChange={({fileList})=>setFileList(fileList)}>
                     <Button className=' w-full text-wrap'>Click to upload image</Button>
                 </Upload>
             </Form.Item>

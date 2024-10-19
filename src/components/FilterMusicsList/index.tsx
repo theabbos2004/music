@@ -5,6 +5,9 @@ import { Element } from 'react-scroll';
 import { MusicCard } from '../shared';
 
 function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, isPlaying, currentIndex},filterMusics,addButton,delMusicFunc,likeMusicFunc,saveMusicFunc,viewMusicFunc}: any) {
+    if(!musics && !filterMusics){
+        return <></>
+    }
     return (
         <Col>
             {
@@ -33,8 +36,8 @@ function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, 
                                     </Col>
                                 </Col>}
                                 {
-                                        filterMusic?.filter(musics)
-                                        .map((music: any, musicIndex: number) => (
+                                        filterMusic?.filter && filterMusic?.filter(musics)
+                                        ?.map((music: any, musicIndex: number) => (
                                             <MusicCard key={musicIndex} admin={admin} musics={musics} music={music} musicIndex={musicIndex} parentIdx={filterMusicIndex} song={{activeSong,currentIndex,isPlaying}} 
                                             user={user}
                                             deleteItemFunc={delMusicFunc} 

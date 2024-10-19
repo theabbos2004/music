@@ -3,7 +3,7 @@ import Search from "./Search";
 import { FaMoon, FaSearch, FaSun } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import Profile from "./Profile";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import { useMainContext } from "../../contexts/MainContext";
 import { useUserContext } from "../../contexts/AuthContext/AuthContext";
@@ -18,6 +18,7 @@ const HeaderTop=({currentUser}:{currentUser:any})=> {
     const {collapsed,setSearchWord,theme,setTheme,setCollapsed}=useMainContext()
     const {mutateAsync:signOutAccount}=useSignOutAccount()
     const {pathname}=useLocation()
+    const naviagte=useNavigate()
     const [activeSearch,setActiveSearch]=useState<boolean>(false)
     const onchageSearch=(word:string)=>{
         setSearchWord(word)
@@ -42,7 +43,13 @@ const HeaderTop=({currentUser}:{currentUser:any})=> {
             window.removeEventListener('resize', handleSize);
         };
     }, []);
-    
+    const signOutFunc=async ()=>{
+        const signOutAccountRes=await signOutAccount()
+        if(signOutAccountRes.error){
+            throw new Error(signOutAccountRes.error)
+        }
+        naviagte("/")
+    }
   return (
     <Header
     className={`h-[3.5rem] items-center justify-between px-6 fixed z-10 border-b-[0.1rem]
@@ -105,7 +112,9 @@ const HeaderTop=({currentUser}:{currentUser:any})=> {
                                 {
                                     key: '2',
                                     label: (
-                                    <div onClick={()=>{signOutAccount()}}>
+                                    <div onClick={()=>{
+                                        signOutFunc()
+                                    }}>
                                         Log out
                                     </div>
                                     ),

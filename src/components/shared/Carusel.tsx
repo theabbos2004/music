@@ -23,7 +23,7 @@ const Carusel: React.FC = () => {
     setAdvertising(newAdvertising?.musics)
   },[getAdvertising?.data])
   return (
-  <div className={`p-4 relative`}> 
+  <div className={`p-4 px-8 sm:px-4 relative w-full`}> 
       <Carousel 
           autoplay 
           infinite={true}
@@ -35,7 +35,7 @@ const Carusel: React.FC = () => {
           advertising?.map((music:any,index:number)=>
             <div key={index} className='flex flex-row justify-center'>
               <Row 
-                className='h-[15rem] sm:h-[25rem] sm:w-full md:w-11/12 lg:w-3/4 xl:w-2/3 text-white bg-[var(--color-green-1)] rounded-[1.5rem] overflow-hidden m-[0 2rem] mx-auto'
+                className='h-[18rem] sm:h-[25rem] sm:w-full md:w-11/12 lg:w-3/4 xl:w-2/3 text-white bg-[var(--color-green-1)] rounded-[1.5rem] overflow-hidden m-[0 2rem] mx-auto'
                 onMouseEnter={()=>setMusicEvent(IState=>{
                   return {...IState,hover:true}
                 })}
@@ -77,9 +77,9 @@ const Carusel: React.FC = () => {
           )
         }
       </Carousel>      
-      <Flex className=' justify-center absolute top-[60%] sm:top-2/3 right-[4%] lg:right-[12%] xl:right-[17%] w-3/5 sm:w-3/5 md:w-2/4 lg:w-2/5 xl:w-1/3 gap-2'>
+      <Flex className='justify-between absolute top-[60%] sm:top-[60%] right-[8%] lg:right-[15%] xl:right-[20%] w-3/5 sm:w-3/5 md:w-2/4 lg:w-2/5 h-1/4 sm:h-1/4 xl:h-1/4 gap-2'>
         {
-          advertising?.map((music:any,musicIndex:number)=><Col key={musicIndex} span={7} className='sm:h-20 rounded-xl overflow-hidden shadow-sm shadow-stone-700'>
+          advertising?.map((music:any,musicIndex:number)=><Col key={musicIndex} span={7} className=' rounded-xl overflow-hidden shadow-sm shadow-stone-700'>
             <img
               src={music.image_url}
               className='w-full h-full object-cover object-center'
