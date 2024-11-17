@@ -1,4 +1,4 @@
-import { Col, Flex, Row } from 'antd';
+import { Col, Flex, Row, Skeleton, Space } from 'antd';
 import { memo } from 'react';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { Element } from 'react-scroll';
@@ -7,7 +7,7 @@ import { MusicCard } from '../shared';
 function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, isPlaying, currentIndex},filterMusics,addButton,delMusicFunc,likeMusicFunc,saveMusicFunc,viewMusicFunc}: any) {
     if(!musics && !filterMusics){
         return <></>
-    }
+    }    
     return (
         <Col>
             {
@@ -36,7 +36,7 @@ function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, 
                                     </Col>
                                 </Col>}
                                 {
-                                        filterMusic?.filter && filterMusic?.filter(musics)
+                                        musics && filterMusic?.filter(musics)
                                         ?.map((music: any, musicIndex: number) => (
                                             <MusicCard key={musicIndex} admin={admin} musics={musics} music={music} musicIndex={musicIndex} parentIdx={filterMusicIndex} song={{activeSong,currentIndex,isPlaying}} 
                                             user={user}
@@ -46,13 +46,13 @@ function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, 
                                             isMusicLoading={isMusicLoading}
                                             viewMusicFunc={viewMusicFunc}
                                             />
-                                        ))
+                                        ))  
                                 }
                             </Flex>
                         </Element>
                     ))
                     :
-                    admin?<Flex className='w-full min-h-52 justify-center  items-center'>
+                    musics?.length <= 0 && admin?<Flex className='w-full min-h-52 justify-center  items-center'>
                          <Col
                             className="gap-2"
                             >
@@ -69,7 +69,22 @@ function FilterMusicslist({ user,admin, musics,isMusicLoading,song:{activeSong, 
                                 <div className=" text-sm text-center">{addButton?.body}</div>
                             </Col>
                         </Col>
-                    </Flex>:""
+                    </Flex>
+                    :
+                    <div className='flex flex-col'>
+                        <div className='w-full py-4 justify-center'>
+                            <Skeleton.Node active={true} style={{ width: "8rem",height:"1.5rem" }}><></></Skeleton.Node>
+                        </div>
+                        <div className='flex flex-wrap w-full justify-center gap-4'>
+                            {Array.from({ length: 9 }).map((_,index)=>(
+                                <Space key={index} className=' flex flex-col'>
+                                    <Skeleton.Node active={true} style={{ width: "8rem",height:"8rem",borderRadius:"1rem" }}><></></Skeleton.Node>
+                                    <Skeleton.Node active={true} style={{ width: "8rem",height:"1.2rem" }}><></></Skeleton.Node>
+                                    <Skeleton.Node active={true} style={{ width: "8rem",height:"0.8rem" }}><></></Skeleton.Node>
+                                </Space>
+                            ))}
+                        </div>
+                    </div>
             }
         </Col>
     )

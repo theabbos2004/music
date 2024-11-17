@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { sidebarSettingsLinks, userAbality } from "../../constants";
 import * as IconAi from 'react-icons/ai';
 import * as IconFa from 'react-icons/fa';
@@ -14,8 +14,14 @@ import { useMainContext } from '../../contexts/MainContext';
 function SettingSideBar() {
     const {theme,collapsedSetting,setCollapsedSetting}=useMainContext()
     const { pathname } = useLocation()
+    useEffect(() => {
+        const handleSize = () =>window.innerWidth<640 && setCollapsedSetting(true)
+        window.addEventListener('resize', handleSize);
+        handleSize()
+        return () =>window.removeEventListener('resize', handleSize);
+    }, []);
     return (
-        <Sider trigger={null} collapsible collapsed={collapsedSetting} theme={theme} className='h-min-[calc(100vh)] border-r-2 relative' width={collapsedSetting ? "6rem" : "10rem"}>
+        <Sider trigger={null} collapsible collapsed={collapsedSetting} theme={theme} className={`h-min-[calc(100vh)] border-r-2 relative`} width={collapsedSetting ? "6rem" : "10rem"}>
             <Col
                 className={`w-full h-[3.5rem] hidden sm:flex items-center ${collapsedSetting ? "justify-center" : "justify-end pr-5"}`}
             >
