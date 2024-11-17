@@ -12,9 +12,10 @@ import { useMainContext } from '../../contexts/MainContext';
 import { useUserContext } from '../../contexts/AuthContext/AuthContext';
 import { useCreateSaveMusic, useSaveMusic, useUpdateAccount } from '../../lib/react-query/queris';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { useLocation } from 'react-router-dom';
 
 const MusicPlayer = () => {
-  const {collapsed}=useMainContext()
+  const {collapsed,collapsedSetting}=useMainContext()
   const {currentSongs, activeSong, isActive, isPlaying , musicDuration , currentTime , currentIndex , isMusicList} = useSelector((state:RootState) => state?.player);
   const {user}=useUserContext()
   const [repeat, setRepeat] = useState<boolean>(false);
@@ -26,16 +27,14 @@ const MusicPlayer = () => {
   const [ isMusicLoading,setIsMusicLoading]=useState<boolean>(false)
   const [ size,setSize]=useState<{width:number}>({width:1024})
   const dispatch = useDispatch();
-
+  const { pathname } = useLocation()
+  
+  
   useEffect(() => {
-      const handleSize = () => {
-          setSize({width:window.innerWidth})
-      };
+      const handleSize = () =>setSize({width:window.innerWidth})
       window.addEventListener('resize', handleSize);
       handleSize()
-      return () => {
-          window.removeEventListener('resize', handleSize);
-      };
+      return () =>window.removeEventListener('resize', handleSize)
   }, []);
 
   const handlePlayPause = () => {
@@ -163,11 +162,20 @@ const MusicPlayer = () => {
           setIsMusicLoading(false)
       }
   }
-
     return (
-      <Flex className={`flex-col sm:flex-row h-[6rem] sm:h-[4rem] ease-linear fixed bottom-0  z-10 bg-[var(--color-blue-1)] px-6 dark:bg-[var(--dark-bg-blue)] border-t-[0.1rem]
-        ${collapsed.collapsed? "w-full sm:w-[calc(100vw-10rem)]":"w-[calc(100vw-5rem)] sm:w-[calc(100vw-6rem)]"}
-        ${activeSong.music_url ? "flex" : "hidden"}`}>
+      <Flex className={`flex-col sm:flex-row sm:h-[4rem] ease-linear fixed bottom-0  z-10 bg-[var(--color-blue-1)] px-6 dark:bg-[var(--dark-bg-blue)] border-t-[0.1rem]
+        ${(!collapsedSetting && pathname.includes("setting"))? "w-full sm:w-[calc(100vw-10rem)]"
+          :(collapsedSetting && pathname.includes("setting"))?"w-full sm:w-[calc(100vw-6rem)] md:w-[calc(100vw-5rem)]"
+          :!collapsed.collapsed?"w-[calc(100vw-5rem)]"
+          :"w-full sm:w-[calc(100vw-10rem)]"
+        }
+        ${activeSong.music_url ? "flex" : "hidden"}
+        ${collapsedSetting && pathname.includes("setting") 
+          ?"sm:ml-[calc(6rem+3px)] md:ml-[calc(5rem)]"
+          :!pathname.includes("setting")?""
+          :"sm:ml-[calc(10rem)]"
+        }
+        `}>
         <Row className='w-full flex py-3 items-center justify-between'>
           <Col span={size?.width > 664?4:6} className='h-full'>
               <Track imgUrl={activeSong?.image_url} title={activeSong.title} singer={activeSong.singer}/>
@@ -178,11 +186,6 @@ const MusicPlayer = () => {
           </Col>
           <Col span={size?.width > 664?4:6} className='h-full justify-end'>
             <Tools setRepeat={setRepeat} repeat={repeat} setShuffle={setShuffle} shuffle={shuffle} isMusicList={isMusicList}/>
-          </Col>
-        </Row>
-        <Row className='flex justify-center items-center sm:hidden'>
-          <Col span={22}>
-            <SliderMusic musicDuration={musicDuration} currentTime={currentTime}/>
           </Col>
         </Row>
       </Flex>

@@ -1,6 +1,6 @@
 import { AddAdvertisingModal, AddMusicAdvertisingModal, MusicCard } from '../shared'
 import { IActiveSong } from '../../types'
-import { Col, Flex, Row } from 'antd'
+import { Col, Flex, Row, Skeleton, Space } from 'antd'
 import { useEffect, useState } from 'react';
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useAddMusicToAdvertising, useCreateSaveMusic, useDelAdvertising, useSaveMusic, useUpdateAccount } from '../../lib/react-query/queris';
@@ -17,7 +17,7 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
   const [isModalOpen, setIsModalOpen] = useState<{ title: string, target: boolean }>();
   const [selectedAdvertising, setSelectedAdvertising] = useState<any>()
   const [musics, setMusics] = useState<any>()
-  const [ isMusicLoading,setIsMusicLoading]=useState<boolean>()
+  const [isMusicLoading, setIsMusicLoading] = useState<boolean>()
   const { openNotification } = useMainContext()
 
   useEffect(() => {
@@ -155,16 +155,26 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
                 </Col>
               </Col>
               {
-                user?.advertisings?.map((advertising: any, advertisingIndex: number) => (
-                  <MusicCard key={advertisingIndex} admin={true} music={advertising} musicIndex={advertisingIndex} parentIdx={23}
-                    deleteItemFunc={deleteAdvertisingFunc}
-                    event={{
-                      onClick: () => {
-                        setShowMenu("advertisings/musics")
-                        setSelectedAdvertising(advertising)
-                      }
-                    }} />
-                ))
+                user?.advertisings?.length > 0
+                  ? (user?.advertisings?.map((advertising: any, advertisingIndex: number) => (
+                    <MusicCard key={advertisingIndex} admin={true} music={advertising} musicIndex={advertisingIndex} parentIdx={23}
+                      deleteItemFunc={deleteAdvertisingFunc}
+                      event={{
+                        onClick: () => {
+                          setShowMenu("advertisings/musics")
+                          setSelectedAdvertising(advertising)
+                        }
+                      }} />
+                  )))
+                  : !user?.advertisings ?
+                    Array.from({ length: 4 }).map((_, index) => (
+                      <Space key={index} className=' flex flex-col'>
+                        <Skeleton.Node active={true} style={{ width: "8rem", height: "8rem", borderRadius: "1rem" }}><></></Skeleton.Node>
+                        <Skeleton.Node active={true} style={{ width: "8rem", height: "1.2rem" }}><></></Skeleton.Node>
+                        <Skeleton.Node active={true} style={{ width: "8rem", height: "0.8rem" }}><></></Skeleton.Node>
+                      </Space>
+                    ))
+                    : ""
               }
             </Row>
           </Col>
@@ -190,7 +200,8 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
                   </Col>
                 </Col>
                 {
-                  musics?.map((music: any, musicIndex: number) => (
+                  musics?.length > 0 
+                  ? (musics?.map((music: any, musicIndex: number) => (
                     <MusicCard key={musicIndex} admin={true} music={music} musics={musics} musicIndex={musicIndex} parentIdx={24}
                       song={song} user={user}
                       isMusicLoading={isMusicLoading}
@@ -198,7 +209,16 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
                       saveMusicFunc={saveMusicFunc}
                       likeMusicFunc={likeMusicFunc}
                     />
-                  ))
+                  )))
+                  :!musics ?
+                    Array.from({ length: 4 }).map((_, index) => (
+                      <Space key={index} className=' flex flex-col'>
+                        <Skeleton.Node active={true} style={{ width: "8rem", height: "8rem", borderRadius: "1rem" }}><></></Skeleton.Node>
+                        <Skeleton.Node active={true} style={{ width: "8rem", height: "1.2rem" }}><></></Skeleton.Node>
+                        <Skeleton.Node active={true} style={{ width: "8rem", height: "0.8rem" }}><></></Skeleton.Node>
+                      </Space>
+                    ))
+                    : ""
                 }
               </Row>
             </Col>

@@ -33,7 +33,10 @@ function SideBarLeft() {
         return () => { window.removeEventListener('resize', handleSize) };
     }, []);
 
-    const handleSize = () => { setWidth(window.innerWidth) };
+    const handleSize = () => { 
+        width > 640 && setCollapsed({collapsed:false,show:true})
+        setWidth(window.innerWidth) 
+    };
 
     const getUserFunc = async () => {
         try {

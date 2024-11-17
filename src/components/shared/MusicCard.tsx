@@ -24,29 +24,6 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
             hover: false
         }));
     };
-    //     if(user){
-    //         const observer = new IntersectionObserver(
-    //           ([entry]) => {
-    //             if (entry.isIntersecting) {
-    //                     !isMusicLoading && viewMusicFunc(music)
-    //             }
-    //           },
-    //           {
-    //             threshold: 0.1,
-    //           }
-    //         );
-        
-    //         if (musicRef.current) {
-    //           observer.observe(musicRef.current);
-    //         }
-    //         return () => {
-    //           if (musicRef.current) {
-    //             observer.unobserve(musicRef.current);
-    //           }
-    //         };
-    //     }
-    
-    //   }, []);
     const dispatch = useDispatch()
     
     return (
@@ -92,7 +69,7 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
                             }
                         }}
                     />
-                    <Flex className={`absolute  w-full flex justify-between items-center gap-1 px-2 py-1 bottom-0 ${musicEvent.id === music.$id && musicEvent.parentIdx === parentIdx && musicEvent.hover ? "block" : "hidden"}`}>
+                    <Flex className={`absolute  w-full flex justify-between items-center gap-1 px-2 py-1 bottom-0`}>
                         <Flex className={`flex justify-between items-center gap-1 ${!likeMusicFunc && "hidden"}`}>
                             {
                                 user?.liked_musics?.filter((likedMusic:any)=>likedMusic?.$id===music?.$id).length>0 && musics?
