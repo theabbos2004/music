@@ -60,7 +60,7 @@ const SignUpForm=() =>{
     <Card className='p-2 bg-transparent border-white text-light-1'>
       <Col className='flex flex-col items-center justify-center text-[var(--color-green)]'>
         <div className=' text-2xl font-bold'>Sign Up</div>
-        <div className=' text-base'>We're glad you signed up</div>
+        <div className=' text-base text-gray-950 dark:text-gray-300'>We're glad you signed up</div>
       </Col>
       <Form
         form={form}
@@ -117,7 +117,7 @@ const SignUpForm=() =>{
         </Form.Item>
       </Form>
       <Row className=' justify-center gap-2'>
-        <div>I have account</div>
+        <div className='dark:text-gray-300'>I have account</div>
         <Link to={"/sign-in"} className=' text-[var(--color-green)] font-semibold'>
           Sign In
         </Link>

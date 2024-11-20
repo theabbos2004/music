@@ -58,7 +58,7 @@ const SignInForm: React.FC = () => {
     <Card className='bg-transparent border-white text-light-1'>
       <Col className='flex flex-col items-center justify-center text-[var(--color-green)]'>
         <div className=' text-2xl font-bold'>Sign In</div>
-        <div className=' text-base'>Welcome</div>
+        <div className=' text-base text-gray-950 dark:text-gray-300'>Welcome</div>
       </Col>
       <Form
         form={form}
@@ -86,7 +86,7 @@ const SignInForm: React.FC = () => {
         </Form.Item>
       </Form>
       <Row className=' justify-center gap-2'>
-        <div>I have account</div>
+        <div className='dark:text-gray-300'>I have account</div>
         <Link to={"/sign-up"} className=' text-[var(--color-green)] font-semibold'>
           Sign Up
         </Link>

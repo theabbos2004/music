@@ -7,7 +7,7 @@ export default function Profile({IconClassName,classNameBox,imageUrl}:{IconClass
         {
           imageUrl?
           <div 
-            className={`size-full border-none rounded-full bg-center bg-cover `} 
+            className={`size-full border-none rounded-full bg-center bg-cover object-cover`} 
             style={{backgroundImage:`url(${imageUrl})`}}
             />
           :
