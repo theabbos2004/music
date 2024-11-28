@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Card, Checkbox, Col, Form, Input, Radio, Row } from 'antd';
 import type { FormProps } from 'antd';
 import { Link } from 'react-router-dom';
-import { EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { memo, useEffect, useState } from 'react';
 import { useCreateUserAccount, useGetAccount, useSignOutAccount } from '../../lib/react-query/queris';
 import { useMainContext } from '../../contexts/MainContext';
@@ -56,7 +56,7 @@ function SignUpStep2Form() {
       }
       !remember && signOutAccount()
       navigate("/")
-      openNotification({ placement: 'topLeft', description: "tizimga xush kelibsiz", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: "tizimga xush kelibsiz", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
       openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })

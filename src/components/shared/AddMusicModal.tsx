@@ -1,7 +1,7 @@
 import { Button, ConfigProvider, Form, FormProps, Input, Modal, Upload } from 'antd';
 import { IActiveSong } from '../../types';
 import { useMainContext } from '../../contexts/MainContext';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
 export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isModalOpen:any,toggleModal:any,submitFunc:any}) {
@@ -39,7 +39,7 @@ export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isMo
                 }
                 setIsLoading(false)
                 toggleModal("music", false)
-                openNotification({ placement: 'topLeft', description: "musiqa yartildi", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+                openNotification({ placement: 'topLeft', description: "musiqa yartildi", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
                 form.resetFields()
             }
         }

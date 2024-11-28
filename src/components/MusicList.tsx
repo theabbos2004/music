@@ -8,7 +8,7 @@ import { FilterMusicsList } from ".";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { appwriteConfig } from "../lib/AppWrite/config";
 import { useMainContext } from "../contexts/MainContext";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 
 
 function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, song: { isPlaying: boolean, activeSong: IActiveSong, currentIndex: number },currentUser:any ,musics:any,albums?:any,admin?:boolean}) {    
@@ -65,7 +65,7 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
             if (delColDocRes?.error) {
                 throw new Error(delColDocRes.error)
             }
-            openNotification({ placement: 'topLeft', description: "music has been removed", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+            openNotification({ placement: 'topLeft', description: "music has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
         }
         catch (error) {
             openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
@@ -80,7 +80,7 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
             if (delColDocRes?.error) {
                 throw new Error(delColDocRes.error)
             }
-            openNotification({ placement: 'topLeft', description: "album has been removed", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+            openNotification({ placement: 'topLeft', description: "album has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
         }
         catch (error) {
             openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
@@ -112,7 +112,7 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
           if (updateMusic.error) {
             throw new Error(updateMusic.error)
           }
-          openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+          openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
         }
         catch (error) {
           openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-red)" }} /> })
@@ -155,8 +155,8 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                 throw new Error(saveMusicRes.error)
             }
             availableUser?
-            openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
-            :openNotification({ placement: 'topLeft', description: `it was successful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+            openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
+            :openNotification({ placement: 'topLeft', description: `it was successful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
             
         }
         catch(error){

@@ -45,7 +45,7 @@ const Carusel: React.FC = () => {
                       return {...IState,hover:false}
                     })}
                     >
-                      <Col span={6} className=' dark:bg-slate-700 flex items-end'>
+                      <Col span={6} className=' dark:bg-slate-700 bg-slate-700 flex items-end'>
                           <Col className='bottom-20 absolute w-[200%] px-2 z-[1] text-center'>
                               <div className='w-full text-3xl whitespace-wrap overflow-hidden overflow-ellipsis'>{music?.singer}</div>
                               <div className='pt-2 text-xl whitespace-nowrap overflow-hidden overflow-ellipsis'>{music?.title}</div>

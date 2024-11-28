@@ -1,7 +1,7 @@
 import { Button, ConfigProvider, Form, FormProps, Input, Modal, Upload } from 'antd';
 import { ICreateAlbum } from '../../types';
 import { useMainContext } from '../../contexts/MainContext';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useCreateAdvertising, usegetCurrentUserQuery } from '../../lib/react-query/queris';
 
@@ -42,7 +42,7 @@ export default function AddAdvertisingModal({isModalOpen,toggleModal}:{isModalOp
             }
             setIsLoading(false)
             toggleModal({title:"advertising",target:false})
-            openNotification({ placement: 'topLeft', description: "new advertising has created", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+            openNotification({ placement: 'topLeft', description: "new advertising has created", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
             form.resetFields()
         }
         catch(error){

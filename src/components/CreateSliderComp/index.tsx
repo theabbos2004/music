@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useAddMusicToAdvertising, useCreateSaveMusic, useDelAdvertising, useSaveMusic, useUpdateAccount } from '../../lib/react-query/queris';
 import { useMainContext } from '../../contexts/MainContext';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 
 export default function CreateSliderComp({ user, song }: { user: any, song: { isPlaying: boolean, activeSong: IActiveSong, currentIndex: number } }) {
   const { mutateAsync: delAdvertising } = useDelAdvertising()
@@ -35,7 +35,7 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
       if (delColDocRes?.error) {
         throw new Error(delColDocRes.error)
       }
-      openNotification({ placement: 'topLeft', description: "music has been removed", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: "music has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
       openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
@@ -48,7 +48,7 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
       if (newMusic.error) {
         throw new Error(newMusic.error)
       }
-      openNotification({ placement: 'topLeft', description: "music has been removed", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: "music has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
       openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
@@ -77,7 +77,7 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
       if (updateMusic.error) {
         throw new Error(updateMusic.error)
       }
-      openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
       openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-red)" }} /> })
@@ -120,8 +120,8 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
         throw new Error(saveMusicRes.error)
       }
       availableUser ?
-        openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
-        : openNotification({ placement: 'topLeft', description: `it was successful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+        openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
+        : openNotification({ placement: 'topLeft', description: `it was successful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
 
     }
     catch (error) {

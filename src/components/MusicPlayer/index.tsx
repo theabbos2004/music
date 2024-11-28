@@ -11,7 +11,7 @@ import SliderMusic from './Slider';
 import { useMainContext } from '../../contexts/MainContext';
 import { useUserContext } from '../../contexts/AuthContext/AuthContext';
 import { useCreateSaveMusic, useSaveMusic, useUpdateAccount } from '../../lib/react-query/queris';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router-dom';
 
 const MusicPlayer = () => {
@@ -105,7 +105,7 @@ const MusicPlayer = () => {
       if (updateMusic.error) {
         throw new Error(updateMusic.error)
       }
-      openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
       openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-red)" }} /> })
@@ -151,8 +151,8 @@ const MusicPlayer = () => {
               throw new Error(saveMusicRes.error)
           }
           availableUser?
-          openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
-          :openNotification({ placement: 'topLeft', description: `it was successful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+          openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
+          :openNotification({ placement: 'topLeft', description: `it was successful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
           
       }
       catch(error){
