@@ -65,7 +65,7 @@ export default function MusicCard({ user,admin, musics,music,musicIndex, parentI
                         onClick={(e:any) => {
                             e.stopPropagation()
                             if(!isMusicLoading){
-                                deleteItemFunc(music)
+                                deleteItemFunc(music.$id)
                             }
                         }}
                     />

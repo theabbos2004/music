@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Card, Checkbox, Col, Form, Input, Radio, Row } from 'antd';
 import type { FormProps } from 'antd';
 import { Link } from 'react-router-dom';
-import { EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { memo, useEffect, useState } from 'react';
 import { useCreateUserAccount, useGetAccount, useSignOutAccount } from '../../lib/react-query/queris';
 import { useMainContext } from '../../contexts/MainContext';
@@ -56,7 +56,7 @@ function SignUpStep2Form() {
       }
       !remember && signOutAccount()
       navigate("/")
-      openNotification({ placement: 'topLeft', description: "tizimga xush kelibsiz", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: "tizimga xush kelibsiz", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
       openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
@@ -112,8 +112,8 @@ function SignUpStep2Form() {
           rules={[{ required: true, message: 'Please input gender !' }]}
         >
           <Radio.Group>
-            <Radio value="male">male</Radio>
-            <Radio value="female">female</Radio>
+            <Radio value="male" className='dark:text-gray-300'>male</Radio>
+            <Radio value="female" className='dark:text-gray-300'>female</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item<FieldType>
@@ -122,7 +122,7 @@ function SignUpStep2Form() {
           layout={"horizontal"}
           className="my-4"
         >
-          <Checkbox  className='text-gray-400'>Remember me</Checkbox>
+          <Checkbox  className='text-gray-600 dark:text-gray-400'>Remember me</Checkbox>
         </Form.Item>
         <Form.Item className='w-full justify-center'>
           <Button type="primary" className='w-full p-4 rounded-xl' htmlType="submit" loading={isLoading}>
@@ -131,7 +131,7 @@ function SignUpStep2Form() {
         </Form.Item>
       </Form>
       <Row className=' justify-center gap-2'>
-        <div>I have account</div>
+        <div dark:text-gray-300>I have account</div>
         <Link to={"/sign-in"} className=' text-[var(--color-green)] font-semibold'>
           Sign In
         </Link>

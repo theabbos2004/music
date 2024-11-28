@@ -1,13 +1,13 @@
 import { Button, ConfigProvider, Form, FormProps, Input, Modal, Upload } from 'antd';
 import { IActiveSong } from '../../types';
 import { useMainContext } from '../../contexts/MainContext';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
 export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isModalOpen:any,toggleModal:any,submitFunc:any}) {
     const { openNotification ,theme} = useMainContext()
     const [ isLoading , setIsLoading] = useState<boolean>()
-    const [fileList, setFileList] = useState<any[]>([]);
+    const [fileList, setFileList] = useState<{music?:any[],image?:any[]}>({music:[],image:[]});
 
     const [form] = Form.useForm();
 
@@ -39,8 +39,9 @@ export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isMo
                 }
                 setIsLoading(false)
                 toggleModal("music", false)
-                openNotification({ placement: 'topLeft', description: "musiqa yartildi", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+                openNotification({ placement: 'topLeft', description: "musiqa yartildi", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
                 form.resetFields()
+                setFileList({})
             }
         }
         catch(error){
@@ -76,7 +77,7 @@ export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isMo
                 className='flex justify-center'
                 rules={[{ required: true, message: "Please upload music!" }]}
             >
-                <Upload accept=".mp3,.wav"  maxCount={1} fileList={fileList} onChange={({fileList})=>setFileList(fileList)}>
+                <Upload accept=".mp3,.wav,.m4a"  maxCount={1} fileList={fileList?.music} onChange={({fileList})=>setFileList((store:any)=>{return {...store,music:fileList}})}>
                     <Button>Click to upload music</Button>
                 </Upload>
             </Form.Item>
@@ -85,7 +86,9 @@ export default function AddMusicModal({isModalOpen,toggleModal,submitFunc}:{isMo
                 className='flex justify-center'
                 rules={[{ required: true, message: "Please upload Image!" }]}
             >
-                <Upload accept=".jpg,.png" className="w-full" action="/upload.do" listType="picture"  maxCount={1} fileList={fileList} onChange={({fileList})=>setFileList(fileList)}>
+                <Upload accept=".jpg,.png" className="w-full" action="/upload.do" listType="picture"  maxCount={1} fileList={fileList?.image} 
+                onChange={({fileList})=>setFileList((store:any)=>{return {...store,image:fileList}})}
+                >
                     <Button className=' w-full text-wrap'>Click to upload image</Button>
                 </Upload>
             </Form.Item>

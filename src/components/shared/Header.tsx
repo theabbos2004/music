@@ -11,7 +11,7 @@ import { memo, useEffect, useState } from "react";
 import { IoLogOutOutline, IoMenu } from "react-icons/io5";
 import { useSignOutAccount } from "../../lib/react-query/queris";
 import { Header } from "antd/es/layout/layout";
-
+import ProjectIcon from "../../assets/img/msuic icon 1.png"
 
 const HeaderTop=({currentUser}:{currentUser:any})=> {
     const {isAuthenticated}=useUserContext()
@@ -65,8 +65,9 @@ const HeaderTop=({currentUser}:{currentUser:any})=> {
                     className={`size-6 text-[var(--color-blue-1)] cursor-pointer ${activeSearch || collapsed.show ?"hidden":"block sm:hidden"}`}
                     onClick={()=>{setCollapsed({collapsed:false,show:true})}}
                 />
-                <Link to={"/"} className={`no-underline text-[--color-green] hover:text-gray-400 ${activeSearch?"hidden":"block"}`}>
-                    Music
+                <Link to={"/"} className={`no-underline text-[--color-green] hover:text-gray-400 ${activeSearch?"hidden":"block"}`}
+                >
+                 <div className="size-8 bg-center bg-cover object-cover" style={{backgroundImage:`url(${ProjectIcon})`}}></div>   
                 </Link>
             </Flex>
             <Col className={`flex items-center ${activeSearch?"block":"hidden sm:block"}`}>
@@ -133,6 +134,7 @@ const HeaderTop=({currentUser}:{currentUser:any})=> {
                                     <Profile 
                                         IconClassName="text-[var(--color-green)]" 
                                         classNameBox={`size-7 border-[var(--color-green)] cursor-pointer`}
+                                        imageUrl={currentUser?.imageUrl}
                                         />
                                 </Link>
                             </>

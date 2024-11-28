@@ -5,7 +5,7 @@ import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useMainContext } from "../../contexts/MainContext";
 import { useCreateSaveMusic, usegetCurrentUserQuery, useGetUser, useSaveMusic, useUpdateAccount } from "../../lib/react-query/queris";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 
 
 export default function Liked() {
@@ -65,7 +65,7 @@ export default function Liked() {
       if (updateMusic.error) {
         throw new Error(updateMusic.error)
       }
-      openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: `it was succesful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
       openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-red)" }} /> })
@@ -106,8 +106,8 @@ export default function Liked() {
             throw new Error(saveMusicRes.error)
         }
         availableUser?
-        openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
-        :openNotification({ placement: 'topLeft', description: `it was successful`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+        openNotification({ placement: 'topLeft', description: `music has been remove in save`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
+        :openNotification({ placement: 'topLeft', description: `it was successful`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
         
     }
     catch(error){
