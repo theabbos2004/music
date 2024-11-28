@@ -8,7 +8,7 @@ export default function ProfileLeft({ user, edit }: { user: any, edit?: boolean 
     const [bgImage, setBgImage] = useState<any>()
     const {pathname}=useLocation()
     useEffect(()=>{
-        setBgImage({urlImg:user?.imageUrl})
+        setBgImage({imageUrl:user?.imageUrl})
     },[user])
     
     return (

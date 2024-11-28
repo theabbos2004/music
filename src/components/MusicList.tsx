@@ -61,11 +61,17 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
             if(!user){
                 throw new Error("register first")
               }
-            const delColDocRes = await delColDoc({ collectionId: appwriteConfig.musicsCollectionId, doccumentId })
-            if (delColDocRes?.error) {
-                throw new Error(delColDocRes.error)
+            else if(doccumentId){
+                const delColDocRes = await delColDoc({ collectionId: appwriteConfig.musicsCollectionId, doccumentId })
+                if (delColDocRes?.error) {
+                    throw new Error(delColDocRes.error)
+                }
+                openNotification({ placement: 'topLeft', description: "music has been removed", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
             }
+<<<<<<< HEAD
             openNotification({ placement: 'topLeft', description: "music has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
+=======
+>>>>>>> c27caf32a1922ab09142b1495b08a5602b874444
         }
         catch (error) {
             openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })

@@ -59,6 +59,13 @@ export const sidebarLinks = <{key:number,
 ];
 export const sidebarSettingsLinks = [
   {
+    key:0,
+    icon:"FaHome",
+    iconsize:"1.2rem",
+    route: "/ ",
+    label: "Home",
+  },
+  {
     key:1,
     icon:"IoPersonSharp",
     iconsize:"",
