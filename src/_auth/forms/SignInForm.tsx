@@ -63,6 +63,8 @@ const SignInForm: React.FC = () => {
       <Form
         form={form}
         initialValues={{
+          email:"aaa@gmail.com", 
+          password:"aaaaaaaa",
           remember:false
         }}
         name="nest-messages"
