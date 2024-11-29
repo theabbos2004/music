@@ -1,7 +1,7 @@
 import { Button, ConfigProvider, Form, FormProps, Input, Modal, Upload } from 'antd';
 import { ICreateAlbum } from '../../types';
 import { useMainContext } from '../../contexts/MainContext';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useCreateAlbum, usegetCurrentUserQuery } from '../../lib/react-query/queris';
 
@@ -45,7 +45,7 @@ export default function AddAlbumModal({isModalOpen,toggleModal}:{isModalOpen:any
                 }
                 setIsLoading(false)
                 toggleModal({title:"album",target:false})
-                openNotification({ placement: 'topLeft', description: "musiqa yartildi", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+                openNotification({ placement: 'topLeft', description: "musiqa yartildi", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
                 form.resetFields()
             }
         }

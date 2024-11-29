@@ -45,7 +45,7 @@ const Carusel: React.FC = () => {
                       return {...IState,hover:false}
                     })}
                     >
-                      <Col span={6} className=' dark:bg-slate-700 flex items-end'>
+                      <Col span={6} className=' bg-slate-700 flex items-end'>
                           <Col className='bottom-20 absolute w-[200%] px-2 z-[1] text-center'>
                               <div className='w-full text-3xl whitespace-wrap overflow-hidden overflow-ellipsis'>{music?.singer}</div>
                               <div className='pt-2 text-xl whitespace-nowrap overflow-hidden overflow-ellipsis'>{music?.title}</div>
@@ -85,9 +85,9 @@ const Carusel: React.FC = () => {
       }
       {
         advertising?
-          <Flex className='justify-between absolute top-[60%] sm:top-[60%] right-[8%] lg:right-[15%] xl:right-[20%] w-3/5 sm:w-3/5 md:w-2/4 lg:w-2/5 h-1/4 sm:h-1/4 xl:h-1/4 gap-2'>
+          <Flex className='justify-center absolute top-[60%] sm:top-[60%] right-[8%] lg:right-[15%] xl:right-[20%] w-3/5 sm:w-3/5 md:w-2/4 lg:w-2/5 h-1/4 sm:h-1/4 xl:h-1/4 gap-2'>
           {
-            advertising?.map((music:any,musicIndex:number)=><Col key={musicIndex} span={7} className=' rounded-xl overflow-hidden shadow-sm shadow-stone-700'>
+            advertising?.map((music:any,musicIndex:number)=><Col key={musicIndex} span={7} className=' rounded-xl overflow-hidden shadow-sm shadow-gray-700'>
               <img
                 src={music.image_url}
                 className='w-full h-full object-cover object-center'

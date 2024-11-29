@@ -1,6 +1,6 @@
 import { Button, Card, Col, ConfigProvider, Flex, Modal } from 'antd';
 import { useMainContext } from '../../contexts/MainContext';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { useAddMusicToAdvertising, usegetCurrentUserQuery, useGetMusics } from '../../lib/react-query/queris';
 import Search from 'antd/es/input/Search';
@@ -56,7 +56,7 @@ export default function AddMusicAdvertisingModal({ isModalOpen, toggleModal, sel
             if (newMusic.error) {
                 throw new Error(newMusic.error)
             }
-            openNotification({ placement: 'topLeft', description: "new music has added", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+            openNotification({ placement: 'topLeft', description: "new music has added", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
             setSearch("")
             toggleModal({ title: "musicToAdvertising", target: false })
             setSelectMusics(null)
