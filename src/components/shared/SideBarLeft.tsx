@@ -10,7 +10,7 @@ import Sider from 'antd/es/layout/Sider';
 import { Button, Col, Row } from 'antd';
 import { useMainContext } from '../../contexts/MainContext';
 import { useGetAccount } from '../../lib/react-query/queris';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useUserContext } from '../../contexts/AuthContext/AuthContext';
 import { IoCloseOutline } from 'react-icons/io5';
 
@@ -47,7 +47,7 @@ function SideBarLeft() {
             setUser(getAccountRes?.data)
         }
         catch (error) {
-            openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+            openNotification({ placement: 'topLeft', description: `${error}`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
         }
     }
     return (

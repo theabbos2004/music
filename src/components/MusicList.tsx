@@ -66,7 +66,7 @@ function MusicList({ user, song ,currentUser,musics,albums,admin}: { user: any, 
                 if (delColDocRes?.error) {
                     throw new Error(delColDocRes.error)
                 }
-                openNotification({ placement: 'topLeft', description: "music has been removed", icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+                openNotification({ placement: 'topLeft', description: "music has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
             }
 <<<<<<< HEAD
             openNotification({ placement: 'topLeft', description: "music has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })

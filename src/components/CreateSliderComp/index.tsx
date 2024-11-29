@@ -38,7 +38,7 @@ export default function CreateSliderComp({ user, song }: { user: any, song: { is
       openNotification({ placement: 'topLeft', description: "music has been removed", icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
     catch (error) {
-      openNotification({ placement: 'topLeft', description: `${error}`, icon: <ExclamationCircleOutlined style={{ color: "var(--color-green)" }} /> })
+      openNotification({ placement: 'topLeft', description: `${error}`, icon: <CheckCircleOutlined style={{ color: "var(--color-green)" }} /> })
     }
   }
   const deleteAdvertisingMusicFunc = async (music: any) => {
