@@ -10,7 +10,7 @@ import Sider from 'antd/es/layout/Sider';
 import { Button, Col, Row } from 'antd';
 import { useMainContext } from '../../contexts/MainContext';
 import { useGetAccount } from '../../lib/react-query/queris';
-import { CheckCircleOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined } from '@ant-design/icons';
 import { useUserContext } from '../../contexts/AuthContext/AuthContext';
 import { IoCloseOutline } from 'react-icons/io5';
 
